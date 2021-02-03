@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['main.py'],
-             pathex=['C:\\Users\\KimKeunSoo\\Desktop\\KNUCouncil'],
+a = Analysis(['src\\main.py'],
+             pathex=['D:\\Github\\KNUCouncil\\KNUCouncil_Seat_Program'],
              binaries=[],
              datas=[],
              hiddenimports=[],
