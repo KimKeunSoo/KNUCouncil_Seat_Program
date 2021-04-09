@@ -74,26 +74,26 @@ print("5. 단과대학별 직선 의원 수 : ", College_Direct)
 # 단과대학별 할당 의원 수
 priority_Initial, priority_Sorted, associated_Seat = module.get_Priority_To_Associate(
     College, max_Seat, max_Associate)
-print("5. 단과대학별 총 할당 의원 수 : ", associated_Seat)
+print("6. 단과대학별 총 할당 의원 수 : ", associated_Seat)
 
 # 단과대학별 고정 의원 수
 fixed_Seat = [1 for i in range(max_College)]
-print("6. 단과대학별 고정 의원 수 : ", fixed_Seat)
+print("7. 단과대학별 고정 의원 수 : ", fixed_Seat)
 
 # 단과대학별 비례 의원 수
 proportional_Seat = module.get_Proportional(
     College, associated_Seat, fixed_Seat)
-print("7. 단과대학별 비례 의원 수 : ", proportional_Seat)
+print("8. 단과대학별 비례 의원 수 : ", proportional_Seat)
 
 # 단과대학별 소수 비레 의원 수
 low_proportional_Seat = module.get_Low_proportional(
     max_Seat, max_College, minimal_N, max_Associate, associated_Seat, priority_Initial, priority_Sorted, fixed_Seat, College_Direct)
-print("8. 단과대학별 소수 비례 의원 수 : ", low_proportional_Seat)
+print("9. 단과대학별 소수 비례 의원 수 : ", low_proportional_Seat)
 
 # 단과대학별 총 의원 수
 final_Seat = module.get_Final(
     fixed_Seat, College, proportional_Seat, low_proportional_Seat)
-print("9. 단과대학별 총 의원 수 : ", final_Seat)
+print("10. 단과대학별 총 의원 수 : ", final_Seat)
 
 
 # 전체
