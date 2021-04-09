@@ -32,6 +32,7 @@ College = data1.values
 #     [19, "글로벌인재학부", 4, 1]
 # ]
 
+
 # 단과대학 당 최대 의석수
 max_Seat = int(data2.values[0, 1])
 
@@ -50,9 +51,25 @@ print("2. 총 재적생 수 :", all_KNU)
 minimal_N = int(all_KNU**(1/3))
 print("3. 최소 정수 :", minimal_N)
 
+# 단과대학 리스트
+College_List = []
+# 단과대학 재적생 수
+College_Attend = []
+# 단과대학 직선석 수
+College_Direct = []
+
+# 위 세개 값 불러오기
+for i in range(max_College):
+    College_List.append(College[i][1])
+    College_Attend.append(College[i][2])
+    College_Direct.append(College[i][3])
+
 # 전학대회 총 할당 의원 수
 max_Associate = module.get_Now_Council(minimal_N, before_Council)
 print("4. 전학대회 총 할당 의원 수 : ", max_Associate)
+
+# 단과대학별 직선 의원 수
+print("5. 단과대학별 직선 의원 수 : ", College_Direct)
 
 # 단과대학별 할당 의원 수
 priority_Initial, priority_Sorted, associated_Seat = module.get_Priority_To_Associate(
@@ -70,7 +87,7 @@ print("7. 단과대학별 비례 의원 수 : ", proportional_Seat)
 
 # 단과대학별 소수 비레 의원 수
 low_proportional_Seat = module.get_Low_proportional(
-    max_Seat, max_College, minimal_N, max_Associate, associated_Seat, priority_Initial, priority_Sorted)
+    max_Seat, max_College, minimal_N, max_Associate, associated_Seat, priority_Initial, priority_Sorted, fixed_Seat, College_Direct)
 print("8. 단과대학별 소수 비례 의원 수 : ", low_proportional_Seat)
 
 # 단과대학별 총 의원 수
@@ -79,15 +96,9 @@ final_Seat = module.get_Final(
 print("9. 단과대학별 총 의원 수 : ", final_Seat)
 
 
-College_List = []
-College_Attend = []
-College_Direct = []
+# 전체
 Population_Per1 = []
-
 for i in range(max_College):
-    College_List.append(College[i][1])
-    College_Attend.append(College[i][2])
-    College_Direct.append(College[i][3])
     Population_Per1.append(round(College[i][2]/final_Seat[i], 2))
 
 
