@@ -56,12 +56,13 @@ def get_Proportional(College, associated_Seat, fixed_Seat):
 # 단과대학별 소수 비례 의원 수 계산 후 반환
 
 
-def get_Low_proportional(max_Seat, max_College, minimal_N, max_Associate, associated_Seat, priority_Initial, priority_Sorted):
+def get_Low_proportional(max_Seat, max_College, minimal_N, max_Associate, associated_Seat, priority_Initial, priority_Sorted, fixed_Seat, College_Direct):
     low_Proportional_Seat = [0 for i in range(max_College)]  # 반환할 값 초기화&할당
     is_Low_College = [0 for i in range(max_College)]  # 소수 단과대학인지 판별할 리스트 초기화
     max_Low_Seat = int(max_Seat/2)  # 소수 단과 대학일지 판별한 기준 값(단과대학별 최대 할당 위원수/2)
     for i in range(max_College):
-        if(max_Low_Seat > associated_Seat[i]):  # 소수 단과 대학 판별 후 flag 1값 설정
+        # 소수 단과 대학 판별 후 flag 1값 설정
+        if((max_Low_Seat > associated_Seat[i]) & (max_Seat > fixed_Seat[i] + College_Direct[i])):
             is_Low_College[i] = 1
 
     index = max_Associate    # 총 할당 위원 maxAssociate 값부터 탐색
@@ -75,7 +76,7 @@ def get_Low_proportional(max_Seat, max_College, minimal_N, max_Associate, associ
             for row in range(max_College):   # 2차원 대조군-행
                 for col in range(max_Seat):  # 2차원 대조군-열
                     # 값 탐색 후 소수 단과대학 일때
-                    if value == priority_Initial[row][col]:
+                    if (value == priority_Initial[row][col]):
                         if is_Low_College[row] != 0:
                             # 해당 단과대학 소수 비례 의원 수 + 1
                             low_Proportional_Seat[row] += 1
