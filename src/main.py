@@ -99,7 +99,7 @@ print("10. 단과대학별 총 의원 수 : ", final_Seat)
 # 전체
 Population_Per1 = []
 for i in range(max_College):
-    Population_Per1.append(round(College[i][2]/final_Seat[i], 2))
+    Population_Per1.append(round(College[i][2]/final_Seat[i], 0)) #의원1인당 인구수 반올림
 
 
 writer = pd.ExcelWriter(
